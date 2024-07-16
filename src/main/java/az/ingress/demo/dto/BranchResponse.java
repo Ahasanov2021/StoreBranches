@@ -1,32 +1,26 @@
-package az.ingress.demo.model;
+package az.ingress.demo.dto;
 
+import az.ingress.demo.model.Address;
+import az.ingress.demo.model.Store;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-@Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "branch")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Branch {
+public class BranchResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     String name;
 
     Integer countOfEmployee;
 
-    @JsonIgnore
-    @ManyToOne
-    @ToString.Exclude
-    Store store;
-
-    @OneToOne(cascade = CascadeType.ALL)
     Address address;
+
 }

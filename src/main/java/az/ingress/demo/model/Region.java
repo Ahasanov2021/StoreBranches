@@ -1,32 +1,27 @@
 package az.ingress.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "branch")
+@Table(name = "region")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Branch {
+public class Region {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    String name;
+    @Column(unique = true)
+    @Enumerated(EnumType.STRING)
+    RegionType name;
 
-    Integer countOfEmployee;
-
-    @JsonIgnore
-    @ManyToOne
-    @ToString.Exclude
-    Store store;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    Address address;
 }
